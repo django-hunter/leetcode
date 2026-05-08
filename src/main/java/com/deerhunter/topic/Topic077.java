@@ -1,7 +1,5 @@
 package com.deerhunter.topic;
 
-import com.deerhunter.common.ListNode;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.ArrayList;
 import java.util.List;

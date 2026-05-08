@@ -1,6 +1,6 @@
 package com.deerhunter.topic;
 
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -184,7 +184,7 @@ public class Topic076 {
             for (int i = 0; i < M; i++) {
                 char c = s.charAt(i);
                 if (tCount.containsKey(c)) {
-                    filteredS.add(new Pair<>(i, c));
+                    filteredS.add(Pair.of(i, c));
                 }
             }
 

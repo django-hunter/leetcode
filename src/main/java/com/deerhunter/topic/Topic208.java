@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class Topic208 {
     // 自己写的实现，和标准实现的区别是：子节点使用了Map
-    static class Trie2 {
+    public static class Trie2 {
         private Node root = new Node(null);
 
         /**

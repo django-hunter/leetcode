@@ -1,7 +1,7 @@
 package com.deerhunter.topic;
 
 import com.deerhunter.tree.TreeNode;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class Topic199 {
                 }
                 if (root.right != null) {
                     if (root.left != null) {
-                        stack.push(new Pair<>(root.left, curDepth));
+                        stack.push(Pair.of(root.left, curDepth));
                     }
                     root = root.right;
                 } else {

@@ -1,6 +1,7 @@
 package com.deerhunter.topic;
 
-import javafx.util.Pair;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -109,7 +110,7 @@ public class Topic239 {
             int n = nums.length;
             int[] ans = new int[n - k + 1];
             for (int i = 0; i < n; i++) {
-                queue.add(new Pair<>(i, nums[i]));
+                queue.add( Pair.of(i, nums[i]));
                 if (i >= k - 1) {
                     while (queue.peek().getKey() < i - k + 1) {
                         queue.remove();

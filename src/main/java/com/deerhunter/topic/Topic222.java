@@ -1,7 +1,7 @@
 package com.deerhunter.topic;
 
 import com.deerhunter.tree.TreeNode;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -69,7 +69,7 @@ public class Topic222 {
                 if (node != null) {
                     curDepth++;
                     if (node.right != null) {
-                        stack.push(new Pair<>(node.left, curDepth));
+                        stack.push(Pair.of(node.left, curDepth));
                         node = node.right;
                         // 找到一个叶子节点
                     } else if (node.left == null) {

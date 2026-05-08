@@ -1,7 +1,6 @@
 package com.deerhunter.topic;
 
 import com.deerhunter.tree.TreeNode;
-import sun.nio.cs.ext.MacHebrew;
 
 /**
  * 给定一个非空二叉树，返回其最大路径和。

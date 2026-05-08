@@ -1,6 +1,6 @@
 package com.deerhunter.tree;
 
-import com.deerhunter.TestUtils;
+import com.deerhunter.topic.TestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
