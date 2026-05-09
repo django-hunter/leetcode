@@ -172,7 +172,7 @@ public class Topic3629 {
         }
     }
 
-    // 参考官方题解
+    // 参考官方题解，倒序bfs
     public static class Solution2 {
         private static final int BOUND = 1_000_001;
         private static final List<Integer>[] FACTORS = getFactors();
@@ -244,6 +244,82 @@ public class Topic3629 {
                             seen[pos] = true;
                         }
                         primeToIndex.remove(factor);
+                    }
+                }
+            }
+            throw new AssertionError("won't reach");
+        }
+    }
+
+    // 参考官方题解，正序bfs
+    public static class Solution3 {
+        private static final int BOUND = 1_000_001;
+        private static final List<Integer>[] FACTORS = getFactors();
+
+        private static List<Integer>[] getFactors() {
+            List<Integer>[] factors = new ArrayList[BOUND];
+            for (int i = 0; i < BOUND; i++) {
+                factors[i] = new ArrayList<>();
+            }
+            for (int i = 2; i < BOUND; i++) {
+                if (!factors[i].isEmpty()) {
+                    continue;
+                }
+                for (int j = i; j < BOUND; j += i) {
+                    factors[j].add(i);
+                }
+            }
+            return factors;
+        }
+
+        public int minJumps(int[] nums) {
+            if (nums.length == 1) {
+                return 0;
+            }
+
+            Map<Integer, List<Integer>> primeToIndices = new HashMap<>();
+            for (int i = 0; i < nums.length; i++) {
+                int num = nums[i];
+                for (int factor : FACTORS[num]) {
+                    primeToIndices.computeIfAbsent(factor, k -> new ArrayList<>()).add(i);
+                }
+            }
+            return bfs(nums, primeToIndices);
+        }
+
+        private int bfs(int[] nums, Map<Integer, List<Integer>> primeToIndices) {
+            Queue<Integer> queue = new ArrayDeque<>();
+            int n = nums.length;
+            boolean[] seen = new boolean[n];
+            queue.add(0);
+            seen[0] = true;
+            for (int layer = 0; !queue.isEmpty(); layer++) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    int index = queue.remove();
+                    if (index == n - 1) {
+                        return layer;
+                    }
+
+                    if (index > 0 && !seen[index - 1]) {
+                        queue.add(index - 1);
+                        seen[index - 1] = true;
+                    }
+
+                    if (index < n - 1 && !seen[index + 1]) {
+                        queue.add(index + 1);
+                        seen[index + 1] = true;
+                    }
+
+                    int num = nums[index];
+                    if (primeToIndices.containsKey(num)) {
+                        for (int pos : primeToIndices.get(num)) {
+                            if (!seen[pos]) {
+                                queue.add(pos);
+                                seen[pos] = true;
+                            }
+                        }
+                        primeToIndices.remove(num);
                     }
                 }
             }
